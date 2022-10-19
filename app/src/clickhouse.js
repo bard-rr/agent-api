@@ -46,6 +46,24 @@ export class Clickhouse {
         AS SELECT * FROM eventDb.eventQueue
        `,
     });
+
+    //create a table to store session information
+    await this.client.exec({
+      query: `
+        CREATE TABLE IF NOT EXISTS eventDb.sessionTable
+        (
+          sessionId String, 
+          startTime DateTime64(3, 'Etc/UTC'), 
+          endTime DateTime64(3, 'Etc/UTC'), 
+          length String,
+          date Date,
+          complete Bool
+        )
+        ENGINE = MergeTree()
+        PRIMARY KEY (sessionId)
+      `,
+    });
+    console.log("created sessionTable");
   }
 
   async getEventsFromSession(sessionId) {
