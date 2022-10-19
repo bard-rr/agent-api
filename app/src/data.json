@@ -1,0 +1,1194 @@
+{
+  "sessionId": "60b682ee-d27e-4202-ada6-864ac3f6f320",
+  "events": [
+    {
+      "type": 4,
+      "data": {
+        "href": "http://localhost:3000/",
+        "width": 958,
+        "height": 919
+      },
+      "timestamp": 1665845698480,
+      "id": 1
+    },
+    {
+      "type": 2,
+      "data": {
+        "node": {
+          "type": 0,
+          "childNodes": [
+            {
+              "type": 1,
+              "name": "html",
+              "publicId": "",
+              "systemId": "",
+              "id": 2
+            },
+            {
+              "type": 2,
+              "tagName": "html",
+              "attributes": {
+                "lang": "en"
+              },
+              "childNodes": [
+                {
+                  "type": 2,
+                  "tagName": "head",
+                  "attributes": {},
+                  "childNodes": [
+                    {
+                      "type": 2,
+                      "tagName": "script",
+                      "attributes": {},
+                      "childNodes": [
+                        {
+                          "type": 3,
+                          "textContent": "SCRIPT_PLACEHOLDER",
+                          "id": 6
+                        }
+                      ],
+                      "id": 5
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 7
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "meta",
+                      "attributes": {
+                        "charset": "utf-8"
+                      },
+                      "childNodes": [],
+                      "id": 8
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 9
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "link",
+                      "attributes": {
+                        "rel": "icon",
+                        "href": "http://localhost:3000/favicon.ico"
+                      },
+                      "childNodes": [],
+                      "id": 10
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 11
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "meta",
+                      "attributes": {
+                        "name": "viewport",
+                        "content": "width=device-width, initial-scale=1"
+                      },
+                      "childNodes": [],
+                      "id": 12
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 13
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "meta",
+                      "attributes": {
+                        "name": "theme-color",
+                        "content": "#000000"
+                      },
+                      "childNodes": [],
+                      "id": 14
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 15
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "meta",
+                      "attributes": {
+                        "name": "description",
+                        "content": "Web site created using create-react-app"
+                      },
+                      "childNodes": [],
+                      "id": 16
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 17
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "link",
+                      "attributes": {
+                        "rel": "apple-touch-icon",
+                        "href": "http://localhost:3000/logo192.png"
+                      },
+                      "childNodes": [],
+                      "id": 18
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n\n    ",
+                      "id": 19
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "link",
+                      "attributes": {
+                        "rel": "manifest",
+                        "href": "http://localhost:3000/manifest.json"
+                      },
+                      "childNodes": [],
+                      "id": 20
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 21
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "link",
+                      "attributes": {
+                        "rel": "stylesheet",
+                        "href": "https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.css"
+                      },
+                      "childNodes": [],
+                      "id": 22
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 23
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "title",
+                      "attributes": {},
+                      "childNodes": [
+                        {
+                          "type": 3,
+                          "textContent": "React App",
+                          "id": 25
+                        }
+                      ],
+                      "id": 24
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n  ",
+                      "id": 26
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "script",
+                      "attributes": {
+                        "defer": "",
+                        "src": "http://localhost:3000/static/js/bundle.js"
+                      },
+                      "childNodes": [],
+                      "id": 27
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "style",
+                      "attributes": {},
+                      "childNodes": [
+                        {
+                          "type": 3,
+                          "textContent": "body { margin: 0px; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif; -webkit-font-smoothing: antialiased; }code { font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }",
+                          "isStyle": true,
+                          "id": 29
+                        }
+                      ],
+                      "id": 28
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "style",
+                      "attributes": {},
+                      "childNodes": [
+                        {
+                          "type": 3,
+                          "textContent": ".App { text-align: center; }.App-logo { height: 40vmin; pointer-events: none; }.replay-page { position: absolute; }@media (prefers-reduced-motion: no-preference) {\n  .App-logo { animation: 20s linear 0s infinite normal none running App-logo-spin; }\n}.App-header { background-color: rgb(40, 44, 52); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: calc(10px + 2vmin); color: white; }.App-link { color: rgb(97, 218, 251); }@keyframes App-logo-spin { \n  0% { transform: rotate(0deg); }\n  100% { transform: rotate(360deg); }\n}",
+                          "isStyle": true,
+                          "id": 31
+                        }
+                      ],
+                      "id": 30
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "style",
+                      "attributes": {},
+                      "childNodes": [
+                        {
+                          "type": 3,
+                          "textContent": ".replayer-wrapper { position: relative; }.replayer-mouse { position: absolute; width: 20px; height: 20px; transition: left 0.05s linear 0s, top 0.05s linear 0s; background-size: contain; background-position: 50% center; background-repeat: no-repeat; background-image: url(\"data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjMwMCIgd2lkdGg9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkYXRhLW5hbWU9IkxheWVyIDEiIHZpZXdCb3g9IjAgMCA1MCA1MCI+PHBhdGggZD0iTTQ4LjcxIDQyLjkxTDM0LjA4IDI4LjI5IDQ0LjMzIDE4YTEgMSAwIDAwLS4zMy0xLjYxTDIuMzUgMS4wNmExIDEgMCAwMC0xLjI5IDEuMjlMMTYuMzkgNDRhMSAxIDAgMDAxLjY1LjM2bDEwLjI1LTEwLjI4IDE0LjYyIDE0LjYzYTEgMSAwIDAwMS40MSAwbDQuMzgtNC4zOGExIDEgMCAwMC4wMS0xLjQyem0tNS4wOSAzLjY3TDI5IDMyYTEgMSAwIDAwLTEuNDEgMGwtOS44NSA5Ljg1TDMuNjkgMy42OWwzOC4xMiAxNEwzMiAyNy41OEExIDEgMCAwMDMyIDI5bDE0LjU5IDE0LjYyeiIvPjwvc3ZnPg==\"); border-color: transparent; }.replayer-mouse::after { content: \"\"; display: inline-block; width: 20px; height: 20px; background: rgb(73, 80, 246); border-radius: 100%; transform: translate(-50%, -50%); opacity: 0.3; }.replayer-mouse.active::after { animation: 0.2s ease-in-out 0s 1 normal none running click; }.replayer-mouse.touch-device { background-image: none; width: 70px; height: 70px; border-radius: 100%; margin-left: -37px; margin-top: -37px; border: 4px solid rgba(73, 80, 246, 0); transition: left 0s linear 0s, top 0s linear 0s, border-color 0.2s ease-in-out 0s; }.replayer-mouse.touch-device.touch-active { border-color: rgb(73, 80, 246); transition: left 0.25s linear 0s, top 0.25s linear 0s, border-color 0.2s ease-in-out 0s; }.replayer-mouse.touch-device::after { opacity: 0; }.replayer-mouse.touch-device.active::after { animation: 0.2s ease-in-out 0s 1 normal none running touch-click; }.replayer-mouse-tail { position: absolute; pointer-events: none; }@keyframes click { \n  0% { opacity: 0.3; width: 20px; height: 20px; }\n  50% { opacity: 0.5; width: 10px; height: 10px; }\n}@keyframes touch-click { \n  0% { opacity: 0; width: 20px; height: 20px; }\n  50% { opacity: 0.5; width: 10px; height: 10px; }\n}.rr-player { position: relative; background: white; float: left; border-radius: 5px; box-shadow: rgba(17, 16, 62, 0.12) 0px 24px 48px; }.rr-player__frame { overflow: hidden; }.replayer-wrapper { float: left; clear: both; transform-origin: left top; left: 50%; top: 50%; }.replayer-wrapper > iframe { border: none; }.rr-controller.svelte-19ke1iv.svelte-19ke1iv { width: 100%; height: 80px; background: rgb(255, 255, 255); display: flex; flex-direction: column; justify-content: space-around; align-items: center; border-radius: 0px 0px 5px 5px; }.rr-timeline.svelte-19ke1iv.svelte-19ke1iv { width: 80%; display: flex; align-items: center; }.rr-timeline__time.svelte-19ke1iv.svelte-19ke1iv { display: inline-block; width: 100px; text-align: center; color: rgb(17, 16, 62); }.rr-progress.svelte-19ke1iv.svelte-19ke1iv { flex: 1 1 0%; height: 12px; background: rgb(238, 238, 238); position: relative; border-radius: 3px; cursor: pointer; box-sizing: border-box; border-top: 4px solid rgb(255, 255, 255); border-bottom: 4px solid rgb(255, 255, 255); }.rr-progress.disabled.svelte-19ke1iv.svelte-19ke1iv { cursor: not-allowed; }.rr-progress__step.svelte-19ke1iv.svelte-19ke1iv { height: 100%; position: absolute; left: 0px; top: 0px; background: rgb(224, 225, 254); }.rr-progress__handler.svelte-19ke1iv.svelte-19ke1iv { width: 20px; height: 20px; border-radius: 10px; position: absolute; top: 2px; transform: translate(-50%, -50%); background: rgb(73, 80, 246); }.rr-controller__btns.svelte-19ke1iv.svelte-19ke1iv { display: flex; align-items: center; justify-content: center; font-size: 13px; }.rr-controller__btns.svelte-19ke1iv button.svelte-19ke1iv { width: 32px; height: 32px; display: flex; padding: 0px; align-items: center; justify-content: center; background: none; border: none; border-radius: 50%; cursor: pointer; }.rr-controller__btns.svelte-19ke1iv button.svelte-19ke1iv:active { background: rgb(224, 225, 254); }.rr-controller__btns.svelte-19ke1iv button.active.svelte-19ke1iv { color: rgb(255, 255, 255); background: rgb(73, 80, 246); }.rr-controller__btns.svelte-19ke1iv button.svelte-19ke1iv:disabled { cursor: not-allowed; }.switch.svelte-9brlez.svelte-9brlez.svelte-9brlez { height: 1em; display: flex; align-items: center; }.switch.disabled.svelte-9brlez.svelte-9brlez.svelte-9brlez { opacity: 0.5; }.label.svelte-9brlez.svelte-9brlez.svelte-9brlez { margin: 0px 8px; }.switch.svelte-9brlez input[type=\"checkbox\"].svelte-9brlez.svelte-9brlez { position: absolute; opacity: 0; }.switch.svelte-9brlez label.svelte-9brlez.svelte-9brlez { width: 2em; height: 1em; position: relative; cursor: pointer; display: block; }.switch.disabled.svelte-9brlez label.svelte-9brlez.svelte-9brlez { cursor: not-allowed; }.switch.svelte-9brlez label.svelte-9brlez.svelte-9brlez::before { content: \"\"; position: absolute; width: 2em; height: 1em; left: 0.1em; transition: background 0.1s ease 0s; background: rgba(73, 80, 246, 0.5); border-radius: 50px; }.switch.svelte-9brlez label.svelte-9brlez.svelte-9brlez::after { content: \"\"; position: absolute; width: 1em; height: 1em; border-radius: 50px; left: 0px; transition: all 0.2s ease 0s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 5px 0px; background: rgb(252, 255, 244); animation: 0.2s ease-out 0s 1 normal none running switch-off; z-index: 2; }.switch.svelte-9brlez input[type=\"checkbox\"].svelte-9brlez:checked + label.svelte-9brlez::before { background: rgb(73, 80, 246); }.switch.svelte-9brlez input[type=\"checkbox\"].svelte-9brlez:checked + label.svelte-9brlez::after { animation: 0.2s ease-out 0s 1 normal none running switch-on; left: 1.1em; }",
+                          "isStyle": true,
+                          "id": 33
+                        }
+                      ],
+                      "id": 32
+                    }
+                  ],
+                  "id": 4
+                },
+                {
+                  "type": 3,
+                  "textContent": "\n  ",
+                  "id": 34
+                },
+                {
+                  "type": 2,
+                  "tagName": "body",
+                  "attributes": {},
+                  "childNodes": [
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 36
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "noscript",
+                      "attributes": {},
+                      "childNodes": [
+                        {
+                          "type": 3,
+                          "textContent": "You need to enable JavaScript to run this app.",
+                          "id": 38
+                        }
+                      ],
+                      "id": 37
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 39
+                    },
+                    {
+                      "type": 2,
+                      "tagName": "div",
+                      "attributes": {
+                        "id": "root"
+                      },
+                      "childNodes": [],
+                      "id": 40
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n    ",
+                      "id": 41
+                    },
+                    {
+                      "type": 5,
+                      "textContent": "\n      This HTML file is a template.\n      If you open it directly in the browser, you will see an empty page.\n\n      You can add webfonts, meta tags, or analytics to this file.\n      The build step will place the bundled scripts into the <body> tag.\n\n      To begin the development, run `npm start` or `yarn start`.\n      To create a production bundle, use `npm run build` or `yarn build`.\n    ",
+                      "id": 42
+                    },
+                    {
+                      "type": 3,
+                      "textContent": "\n  \n\n",
+                      "id": 43
+                    }
+                  ],
+                  "id": 35
+                }
+              ],
+              "id": 3
+            }
+          ],
+          "id": 1
+        },
+        "initialOffset": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "timestamp": 1665845698485,
+      "id": 2
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 0,
+        "texts": [],
+        "attributes": [],
+        "removes": [],
+        "adds": [
+          {
+            "parentId": 40,
+            "nextId": null,
+            "node": {
+              "type": 2,
+              "tagName": "div",
+              "attributes": {
+                "class": "App"
+              },
+              "childNodes": [],
+              "id": 44
+            }
+          },
+          {
+            "parentId": 44,
+            "nextId": null,
+            "node": {
+              "type": 2,
+              "tagName": "header",
+              "attributes": {
+                "class": "App-header"
+              },
+              "childNodes": [],
+              "id": 45
+            }
+          },
+          {
+            "parentId": 45,
+            "nextId": null,
+            "node": {
+              "type": 2,
+              "tagName": "button",
+              "attributes": {},
+              "childNodes": [],
+              "id": 46
+            }
+          },
+          {
+            "parentId": 46,
+            "nextId": null,
+            "node": {
+              "type": 3,
+              "textContent": "Create an unhandled rejection",
+              "id": 47
+            }
+          },
+          {
+            "parentId": 45,
+            "nextId": 46,
+            "node": {
+              "type": 2,
+              "tagName": "button",
+              "attributes": {},
+              "childNodes": [],
+              "id": 48
+            }
+          },
+          {
+            "parentId": 45,
+            "nextId": 48,
+            "node": {
+              "type": 2,
+              "tagName": "button",
+              "attributes": {},
+              "childNodes": [],
+              "id": 49
+            }
+          },
+          {
+            "parentId": 45,
+            "nextId": 49,
+            "node": {
+              "type": 2,
+              "tagName": "img",
+              "attributes": {
+                "src": "http://localhost:3000/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+                "class": "App-logo",
+                "alt": "logo"
+              },
+              "childNodes": [],
+              "id": 50
+            }
+          },
+          {
+            "parentId": 49,
+            "nextId": null,
+            "node": {
+              "type": 3,
+              "textContent": "Stop recording",
+              "id": 51
+            }
+          },
+          {
+            "parentId": 48,
+            "nextId": null,
+            "node": {
+              "type": 3,
+              "textContent": "Throw an Error",
+              "id": 52
+            }
+          }
+        ]
+      },
+      "timestamp": 1665845698507,
+      "id": 3
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 79,
+            "y": 125,
+            "id": 45,
+            "timeOffset": 0
+          }
+        ]
+      },
+      "timestamp": 1665845698603,
+      "id": 4
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 79,
+            "y": 128,
+            "id": 45,
+            "timeOffset": -433
+          },
+          {
+            "x": 79,
+            "y": 131,
+            "id": 45,
+            "timeOffset": -367
+          },
+          {
+            "x": 83,
+            "y": 139,
+            "id": 45,
+            "timeOffset": -317
+          },
+          {
+            "x": 121,
+            "y": 181,
+            "id": 45,
+            "timeOffset": -267
+          },
+          {
+            "x": 204,
+            "y": 253,
+            "id": 45,
+            "timeOffset": -217
+          },
+          {
+            "x": 290,
+            "y": 320,
+            "id": 45,
+            "timeOffset": -167
+          },
+          {
+            "x": 345,
+            "y": 369,
+            "id": 45,
+            "timeOffset": -117
+          },
+          {
+            "x": 379,
+            "y": 396,
+            "id": 45,
+            "timeOffset": -67
+          },
+          {
+            "x": 430,
+            "y": 413,
+            "id": 45,
+            "timeOffset": -17
+          }
+        ]
+      },
+      "timestamp": 1665845699103,
+      "id": 5
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 479,
+            "y": 414,
+            "id": 45,
+            "timeOffset": -466
+          },
+          {
+            "x": 553,
+            "y": 415,
+            "id": 45,
+            "timeOffset": -400
+          },
+          {
+            "x": 611,
+            "y": 419,
+            "id": 45,
+            "timeOffset": -350
+          },
+          {
+            "x": 659,
+            "y": 426,
+            "id": 45,
+            "timeOffset": -300
+          },
+          {
+            "x": 685,
+            "y": 437,
+            "id": 45,
+            "timeOffset": -250
+          },
+          {
+            "x": 696,
+            "y": 463,
+            "id": 45,
+            "timeOffset": -199
+          },
+          {
+            "x": 698,
+            "y": 514,
+            "id": 45,
+            "timeOffset": -134
+          },
+          {
+            "x": 694,
+            "y": 541,
+            "id": 45,
+            "timeOffset": -83
+          },
+          {
+            "x": 658,
+            "y": 575,
+            "id": 45,
+            "timeOffset": -15
+          }
+        ]
+      },
+      "timestamp": 1665845699603,
+      "id": 6
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 612,
+            "y": 603,
+            "id": 45,
+            "timeOffset": -450
+          },
+          {
+            "x": 594,
+            "y": 611,
+            "id": 45,
+            "timeOffset": -400
+          },
+          {
+            "x": 588,
+            "y": 612,
+            "id": 45,
+            "timeOffset": -350
+          },
+          {
+            "x": 577,
+            "y": 614,
+            "id": 45,
+            "timeOffset": -300
+          },
+          {
+            "x": 571,
+            "y": 614,
+            "id": 45,
+            "timeOffset": -250
+          },
+          {
+            "x": 549,
+            "y": 606,
+            "id": 45,
+            "timeOffset": -200
+          },
+          {
+            "x": 530,
+            "y": 600,
+            "id": 45,
+            "timeOffset": -150
+          },
+          {
+            "x": 499,
+            "y": 590,
+            "id": 45,
+            "timeOffset": -100
+          },
+          {
+            "x": 456,
+            "y": 584,
+            "id": 45,
+            "timeOffset": -50
+          },
+          {
+            "x": 437,
+            "y": 583,
+            "id": 45,
+            "timeOffset": 0
+          }
+        ]
+      },
+      "timestamp": 1665845700103,
+      "id": 7
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 1,
+        "id": 45,
+        "x": 437,
+        "y": 583
+      },
+      "timestamp": 1665845700387,
+      "id": 8
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 0,
+        "id": 45,
+        "x": 437,
+        "y": 583
+      },
+      "timestamp": 1665845700506,
+      "id": 9
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 2,
+        "id": 45,
+        "x": 437,
+        "y": 583
+      },
+      "timestamp": 1665845700507,
+      "id": 10
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 436,
+            "y": 583,
+            "id": 45,
+            "timeOffset": 0
+          }
+        ]
+      },
+      "timestamp": 1665845700670,
+      "id": 11
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 430,
+            "y": 583,
+            "id": 45,
+            "timeOffset": -435
+          },
+          {
+            "x": 427,
+            "y": 583,
+            "id": 45,
+            "timeOffset": -318
+          },
+          {
+            "x": 426,
+            "y": 583,
+            "id": 45,
+            "timeOffset": -251
+          },
+          {
+            "x": 423,
+            "y": 584,
+            "id": 45,
+            "timeOffset": -185
+          },
+          {
+            "x": 421,
+            "y": 586,
+            "id": 45,
+            "timeOffset": -135
+          },
+          {
+            "x": 421,
+            "y": 587,
+            "id": 45,
+            "timeOffset": -68
+          },
+          {
+            "x": 418,
+            "y": 587,
+            "id": 45,
+            "timeOffset": -18
+          }
+        ]
+      },
+      "timestamp": 1665845701171,
+      "id": 12
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 415,
+            "y": 587,
+            "id": 45,
+            "timeOffset": -468
+          },
+          {
+            "x": 409,
+            "y": 589,
+            "id": 45,
+            "timeOffset": -418
+          },
+          {
+            "x": 393,
+            "y": 594,
+            "id": 45,
+            "timeOffset": -368
+          },
+          {
+            "x": 384,
+            "y": 598,
+            "id": 45,
+            "timeOffset": -318
+          },
+          {
+            "x": 378,
+            "y": 605,
+            "id": 45,
+            "timeOffset": -268
+          },
+          {
+            "x": 374,
+            "y": 613,
+            "id": 45,
+            "timeOffset": -218
+          },
+          {
+            "x": 373,
+            "y": 617,
+            "id": 45,
+            "timeOffset": -168
+          },
+          {
+            "x": 373,
+            "y": 619,
+            "id": 45,
+            "timeOffset": -118
+          },
+          {
+            "x": 375,
+            "y": 623,
+            "id": 45,
+            "timeOffset": -52
+          },
+          {
+            "x": 378,
+            "y": 625,
+            "id": 45,
+            "timeOffset": 0
+          }
+        ]
+      },
+      "timestamp": 1665845701671,
+      "id": 13
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 383,
+            "y": 627,
+            "id": 45,
+            "timeOffset": -435
+          },
+          {
+            "x": 388,
+            "y": 628,
+            "id": 45,
+            "timeOffset": -384
+          },
+          {
+            "x": 395,
+            "y": 630,
+            "id": 45,
+            "timeOffset": -334
+          },
+          {
+            "x": 402,
+            "y": 633,
+            "id": 45,
+            "timeOffset": -268
+          },
+          {
+            "x": 405,
+            "y": 634,
+            "id": 45,
+            "timeOffset": -218
+          },
+          {
+            "x": 408,
+            "y": 636,
+            "id": 45,
+            "timeOffset": -168
+          },
+          {
+            "x": 414,
+            "y": 639,
+            "id": 45,
+            "timeOffset": -118
+          },
+          {
+            "x": 418,
+            "y": 640,
+            "id": 45,
+            "timeOffset": -68
+          },
+          {
+            "x": 423,
+            "y": 642,
+            "id": 45,
+            "timeOffset": -18
+          }
+        ]
+      },
+      "timestamp": 1665845702171,
+      "id": 14
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 433,
+            "y": 642,
+            "id": 48,
+            "timeOffset": -478
+          },
+          {
+            "x": 438,
+            "y": 643,
+            "id": 48,
+            "timeOffset": -428
+          },
+          {
+            "x": 442,
+            "y": 643,
+            "id": 48,
+            "timeOffset": -378
+          }
+        ]
+      },
+      "timestamp": 1665845702681,
+      "id": 15
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 1,
+        "id": 48,
+        "x": 443,
+        "y": 643
+      },
+      "timestamp": 1665845702931,
+      "id": 16
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 5,
+        "id": 48
+      },
+      "timestamp": 1665845702932,
+      "id": 17
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 0,
+        "id": 48,
+        "x": 443,
+        "y": 643
+      },
+      "timestamp": 1665845703003,
+      "id": 18
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 2,
+        "id": 48,
+        "x": 443,
+        "y": 643
+      },
+      "timestamp": 1665845703004,
+      "id": 19
+    },
+    {
+      "type": 6,
+      "data": {
+        "plugin": "rrweb/console@1",
+        "payload": {
+          "level": "error",
+          "trace": [
+            "makeError (http://localhost:3000/static/js/bundle.js:194:11)",
+            "HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:14653:18)",
+            "Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:14697:20)",
+            "invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:14754:35)",
+            "invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/bundle.js:14768:29)",
+            "executeDispatch (http://localhost:3000/static/js/bundle.js:18912:7)",
+            "processDispatchQueueItemsInOrder (http://localhost:3000/static/js/bundle.js:18938:11)",
+            "processDispatchQueue (http://localhost:3000/static/js/bundle.js:18949:9)",
+            "dispatchEventsForPlugins (http://localhost:3000/static/js/bundle.js:18958:7)",
+            "http://localhost:3000/static/js/bundle.js:19118:16"
+          ],
+          "payload": ["\"Uncaught Error: Threw me an error!\""]
+        }
+      },
+      "timestamp": 1665845703019,
+      "id": 20
+    },
+    {
+      "type": 6,
+      "data": {
+        "plugin": "rrweb/console@1",
+        "payload": {
+          "level": "error",
+          "trace": [
+            "makeError (http://localhost:3000/static/js/bundle.js:194:11)",
+            "HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:14653:18)",
+            "Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:14697:20)",
+            "invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:14754:35)",
+            "invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/bundle.js:14768:29)",
+            "executeDispatch (http://localhost:3000/static/js/bundle.js:18912:7)",
+            "processDispatchQueueItemsInOrder (http://localhost:3000/static/js/bundle.js:18938:11)",
+            "processDispatchQueue (http://localhost:3000/static/js/bundle.js:18949:9)",
+            "dispatchEventsForPlugins (http://localhost:3000/static/js/bundle.js:18958:7)",
+            "http://localhost:3000/static/js/bundle.js:19118:16"
+          ],
+          "payload": ["\"Uncaught Error: Threw me an error!\""]
+        }
+      },
+      "timestamp": 1665845703018,
+      "id": 21
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 442,
+            "y": 643,
+            "id": 48,
+            "timeOffset": 0
+          }
+        ]
+      },
+      "timestamp": 1665845703387,
+      "id": 22
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 437,
+            "y": 643,
+            "id": 48,
+            "timeOffset": -432
+          },
+          {
+            "x": 430,
+            "y": 641,
+            "id": 48,
+            "timeOffset": -367
+          },
+          {
+            "x": 429,
+            "y": 640,
+            "id": 48,
+            "timeOffset": -317
+          },
+          {
+            "x": 428,
+            "y": 638,
+            "id": 48,
+            "timeOffset": -267
+          },
+          {
+            "x": 428,
+            "y": 636,
+            "id": 48,
+            "timeOffset": -217
+          },
+          {
+            "x": 427,
+            "y": 633,
+            "id": 48,
+            "timeOffset": -167
+          },
+          {
+            "x": 427,
+            "y": 629,
+            "id": 49,
+            "timeOffset": -117
+          },
+          {
+            "x": 427,
+            "y": 625,
+            "id": 49,
+            "timeOffset": -67
+          },
+          {
+            "x": 427,
+            "y": 620,
+            "id": 49,
+            "timeOffset": 0
+          }
+        ]
+      },
+      "timestamp": 1665845703887,
+      "id": 23
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 1,
+        "positions": [
+          {
+            "x": 428,
+            "y": 617,
+            "id": 49,
+            "timeOffset": -462
+          },
+          {
+            "x": 431,
+            "y": 616,
+            "id": 49,
+            "timeOffset": -412
+          },
+          {
+            "x": 432,
+            "y": 616,
+            "id": 49,
+            "timeOffset": -362
+          },
+          {
+            "x": 434,
+            "y": 616,
+            "id": 49,
+            "timeOffset": -295
+          },
+          {
+            "x": 437,
+            "y": 616,
+            "id": 49,
+            "timeOffset": -244
+          },
+          {
+            "x": 438,
+            "y": 616,
+            "id": 49,
+            "timeOffset": -161
+          }
+        ]
+      },
+      "timestamp": 1665845704398,
+      "id": 24
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 1,
+        "id": 49,
+        "x": 438,
+        "y": 616
+      },
+      "timestamp": 1665845704827,
+      "id": 25
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 6,
+        "id": 48
+      },
+      "timestamp": 1665845704828,
+      "id": 26
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 5,
+        "id": 49
+      },
+      "timestamp": 1665845704828,
+      "id": 27
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 0,
+        "id": 49,
+        "x": 438,
+        "y": 616
+      },
+      "timestamp": 1665845704890,
+      "id": 28
+    },
+    {
+      "type": 3,
+      "data": {
+        "source": 2,
+        "type": 2,
+        "id": 49,
+        "x": 438,
+        "y": 616
+      },
+      "timestamp": 1665845704891,
+      "id": 29
+    }
+  ]
+}
