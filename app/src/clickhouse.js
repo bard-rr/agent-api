@@ -47,7 +47,8 @@ export class Clickhouse {
        `,
     });
 
-    //create a table to store session information
+    //create a table to store session information. Might need to do
+    //some finagling with the date-related things on the way out
     await this.client.exec({
       query: `
         CREATE TABLE IF NOT EXISTS eventDb.sessionTable
@@ -63,7 +64,6 @@ export class Clickhouse {
         PRIMARY KEY (sessionId)
       `,
     });
-    console.log("created sessionTable");
   }
 
   async getEventsFromSession(sessionId) {
@@ -85,13 +85,20 @@ export class Clickhouse {
     });
   }
 
-  //TODO: the query works in the clickhouse client. need to make sure it works in the wild.
-  async getAllSessionIds() {
-    let query = `SELECT DISTINCT FROM eventDb.eventTable`;
-    let resultSet = await this.client.query({
-      query,
-      format: "JSONEachRow",
-    });
-    return await resultSet.json();
+  async startNewSession(sessionId, timestamp) {
+    let date = this.buildDate(timestamp);
+    let query = `
+      INSERT INTO eventDb.sessionTable VALUES 
+      (sessionId, startTime, date, complete)
+      ('${sessionId}', ${timestamp}, ${date}, ${false})
+        `;
   }
+
+  async endSession(sessionId, timestamp) {
+    console.log("info", sessionId, timestamp);
+  }
+
+  //accepts a timestamp in milliseconds. converts it to a string
+  //in the format of yyyy-mm-dd compatable with the ch Date type
+  buildDate(timestamp) {}
 }

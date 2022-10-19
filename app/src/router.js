@@ -29,6 +29,7 @@ const setupAllConnections = async () => {
 setupAllConnections();
 
 //let us know that a session has begun
+//TODO: handle case where session exists
 router.post("/start-session", async (req, res) => {
   let { sessionId, timestamp } = req.body;
   if (!sessionId || !timestamp) {
@@ -43,6 +44,7 @@ router.post("/start-session", async (req, res) => {
 });
 
 //let us know a session has ended
+//TODO: handle case where session doesn't exist
 router.post("/end-session", async (req, res) => {
   let { sessionId, timestamp } = req.body;
   if (!sessionId || !timestamp) {
