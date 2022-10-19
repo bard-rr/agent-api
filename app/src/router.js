@@ -4,7 +4,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const data = require("./data.json");
 import { RabbitQ } from "./rabbitQueue.js";
-import { Clickhouse } from "./clickhouseService.js";
+import { Clickhouse } from "./clickhouse.js";
 
 const router = express.Router();
 
@@ -28,8 +28,36 @@ const setupAllConnections = async () => {
 };
 setupAllConnections();
 
-//take the static session data and feed it to the queue
-router.get("/begin", async (req, res) => {
+//let us know that a session has begun
+router.post("/start-session", async (req, res) => {
+  let { sessionId, timestamp } = req.body;
+  if (!sessionId || !timestamp) {
+    res.status(400).send();
+  }
+  try {
+    await clickhouse.startNewSession(sessionId, timestamp);
+    res.status(200).send();
+  } catch {
+    res.status(500).send();
+  }
+});
+
+//let us know a session has ended
+router.post("/end-session", async (req, res) => {
+  let { sessionId, timestamp } = req.body;
+  if (!sessionId || !timestamp) {
+    res.status(400).send();
+  }
+  try {
+    await clickhouse.endSession(sessionId, timestamp);
+    res.status(200).send();
+  } catch {
+    res.status(500).send();
+  }
+});
+
+//take session data from the body and feed it to the queue
+router.get("/record", async (req, res) => {
   let { sessionId, events } = data;
   for (let i = 0; i < events.length; i++) {
     //clickhouse expects a string for the event: not a json object.
