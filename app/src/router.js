@@ -55,7 +55,7 @@ router.post("/end-session", async (req, res) => {
 });
 
 //take session data from the body and feed it to the queue
-router.get("/record", async (req, res) => {
+router.post("/record", async (req, res) => {
   let { sessionId, events } = req.body;
   for (let i = 0; i < events.length; i++) {
     //clickhouse expects a string for the event: not a json object.
