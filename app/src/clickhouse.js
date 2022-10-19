@@ -56,7 +56,7 @@ export class Clickhouse {
           sessionId String, 
           startTime DateTime64(3, 'Etc/UTC'), 
           endTime DateTime64(3, 'Etc/UTC'), 
-          length String,
+          lengthMs UInt64,
           date Date,
           complete Bool
         )
@@ -64,16 +64,6 @@ export class Clickhouse {
         PRIMARY KEY (sessionId)
       `,
     });
-  }
-
-  async getEventsFromSession(sessionId) {
-    let query = `SELECT * from eventDb.eventTable where sessionId='${sessionId}'`;
-    let resultSet = await this.client.query({
-      query,
-      format: "JSONEachRow",
-    });
-    let dataSet = await resultSet.json();
-    return this.processData(dataSet);
   }
 
   //data is an array of objects with a sessionId and event property.
@@ -86,19 +76,64 @@ export class Clickhouse {
   }
 
   async startNewSession(sessionId, timestamp) {
+    let sessionArr = await this.getOneSession(sessionId);
+    if (sessionArr.length !== 0) {
+      throw new Error("Attempted to start a session that already exists");
+    }
     let date = this.buildDate(timestamp);
     let query = `
-      INSERT INTO eventDb.sessionTable VALUES 
+      INSERT INTO eventDb.sessionTable 
       (sessionId, startTime, date, complete)
-      ('${sessionId}', ${timestamp}, ${date}, ${false})
-        `;
+      VALUES 
+      ('${sessionId}', ${timestamp}, '${date}', ${false})
+    `;
+    console.log("start query", query);
+    await this.client.exec({ query });
   }
 
-  async endSession(sessionId, timestamp) {
-    console.log("info", sessionId, timestamp);
+  // TODO: clickhouse REALLY doesn't like it when you update the data inside it...
+  // may need to rethink how we store this kind of queryable session info...
+  async endSession(sessionId, endTimestamp) {
+    let sessionArr = await this.getOneSession(sessionId);
+    if (sessionArr.length === 0) {
+      throw new Error("attempted to end a session that doesn't exist");
+    }
+
+    //TODO: there's a bug here because we're storing a central timestamp as a UTC one.
+    let startTimestamp = Date.parse(sessionArr[0].startTime);
+    let lengthMs = endTimestamp - startTimestamp;
+
+    //TODO: the endTime is stored as the unix endtime instead of what we want here...
+    let query = `
+      ALTER TABLE eventDb.sessionTable
+      UPDATE endTime=${endTimestamp},
+      complete=${true},
+      lengthMs=${lengthMs}
+      WHERE sessionId='${sessionId}'
+    `;
+    console.log("alter query", query);
+    await this.client.exec({ query });
+  }
+
+  async getOneSession(sessionId) {
+    let query = `select * from eventDb.sessionTable where sessionId='${sessionId}'`;
+    let resultSet = await this.client.query({
+      query,
+      format: "JSONEachRow",
+    });
+    let dataSet = await resultSet.json();
+    return dataSet;
   }
 
   //accepts a timestamp in milliseconds. converts it to a string
   //in the format of yyyy-mm-dd compatable with the ch Date type
-  buildDate(timestamp) {}
+  buildDate(timestamp) {
+    let dateObj = new Date(timestamp);
+    let day = dateObj.getUTCDate();
+    let month = dateObj.getUTCMonth();
+    let year = dateObj.getUTCFullYear();
+    let finalDate = `${year.toString()}-${month.toString()}-${day.toString()}`;
+    console.log("final fate", finalDate);
+    return finalDate;
+  }
 }
