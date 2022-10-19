@@ -54,8 +54,8 @@ export class Clickhouse {
         CREATE TABLE IF NOT EXISTS eventDb.sessionTable
         (
           sessionId String, 
-          startTime DateTime64(3, 'Etc/UTC'), 
-          endTime DateTime64(3, 'Etc/UTC'), 
+          startTime UInt64, 
+          endTime UInt64, 
           lengthMs UInt64,
           date Date,
           complete Bool
@@ -87,7 +87,6 @@ export class Clickhouse {
       VALUES 
       ('${sessionId}', ${timestamp}, '${date}', ${false})
     `;
-    console.log("start query", query);
     await this.client.exec({ query });
   }
 
@@ -99,11 +98,9 @@ export class Clickhouse {
       throw new Error("attempted to end a session that doesn't exist");
     }
 
-    //TODO: there's a bug here because we're storing a central timestamp as a UTC one.
-    let startTimestamp = Date.parse(sessionArr[0].startTime);
+    let startTimestamp = sessionArr[0].startTime;
     let lengthMs = endTimestamp - startTimestamp;
 
-    //TODO: the endTime is stored as the unix endtime instead of what we want here...
     let query = `
       ALTER TABLE eventDb.sessionTable
       UPDATE endTime=${endTimestamp},
@@ -111,7 +108,6 @@ export class Clickhouse {
       lengthMs=${lengthMs}
       WHERE sessionId='${sessionId}'
     `;
-    console.log("alter query", query);
     await this.client.exec({ query });
   }
 
@@ -130,7 +126,7 @@ export class Clickhouse {
   buildDate(timestamp) {
     let dateObj = new Date(timestamp);
     let day = dateObj.getUTCDate();
-    let month = dateObj.getUTCMonth();
+    let month = dateObj.getUTCMonth() + 1;
     let year = dateObj.getUTCFullYear();
     let finalDate = `${year.toString()}-${month.toString()}-${day.toString()}`;
     console.log("final fate", finalDate);
