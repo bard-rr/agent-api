@@ -33,7 +33,7 @@ export class Clickhouse {
         CREATE TABLE IF NOT EXISTS eventDb.eventQueue
         (sessionId String, event String)
         ENGINE = RabbitMQ SETTINGS
-          rabbitmq_host_port = 'localhost:5672',
+          rabbitmq_address = 'amqp://localhost:5672',
           rabbitmq_exchange_name = 'test-exchange',
           rabbitmq_format = 'JSONEachRow'
       `,
