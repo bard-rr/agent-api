@@ -129,7 +129,6 @@ export class Clickhouse {
     let month = dateObj.getUTCMonth() + 1;
     let year = dateObj.getUTCFullYear();
     let finalDate = `${year.toString()}-${month.toString()}-${day.toString()}`;
-    console.log("final fate", finalDate);
     return finalDate;
   }
 }
