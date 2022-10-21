@@ -36,12 +36,10 @@ router.post("/end-session", async (req, res) => {
   }
 });
 
-//take session data from the body and feed it to the queue
+//take session data from the body and feed it to the data pipeline
 router.post("/record", async (req, res) => {
   let { sessionId, events } = req.body;
-  for (let i = 0; i < events.length; i++) {
-    await dataService.sendEventMessage(sessionId, events[i]);
-  }
+  await dataService.handleEvents(sessionId, events);
   res.status(200).send();
 });
 

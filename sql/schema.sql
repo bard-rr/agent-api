@@ -7,7 +7,6 @@ CREATE TABLE session_metadata (
   id text PRIMARY KEY,
   startTime bigint NOT NULL,
   endTime bigint,
-  lengthMs integer,
-  dateMs bigint NOT NULL,
+  lastEventTimestamp bigint NOT NULL,
   complete bool
 )
