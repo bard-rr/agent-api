@@ -3,6 +3,15 @@ const { Client } = pkg;
 import dotenv from "dotenv";
 dotenv.config();
 
+/*
+pg Client expects an env file with the following fields
+  PGUSER
+  PGPASSWORD
+  PGHOST
+  PGDATABASE
+  PGPORT
+*/
+
 export class Postgres {
   #client;
   constructor() {}
