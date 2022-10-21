@@ -40,6 +40,7 @@ router.post("/end-session", async (req, res) => {
 router.post("/record", async (req, res) => {
   let { sessionId, events } = req.body;
   await dataService.handleEvents(sessionId, events);
+  console.log("created the new session");
   res.status(200).send();
 });
 

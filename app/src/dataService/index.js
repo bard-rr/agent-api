@@ -35,13 +35,17 @@ export class DataService {
   }
 
   async handleEvents(sessionId, eventArr) {
-    // if (newSession) {
-    //   //create new session
-    // } else if (endedSession) {
-    //   return; //ignore subsequent messages for ended sessions
-    // } else {
-    //   //update last received timestamp for session metadata
-    // }
+    let metadata = await this.#getSessionMetadata(sessionId);
+    if (this.#isNewSession(metadata)) {
+      //create new session
+      await this.#createNewSession(sessionId, eventArr[0]);
+    } else if (this.#isEndedSession(metadata)) {
+      //ignore subsequent messages for ended sessions
+      return;
+    } else {
+      //update last received timestamp for session metadata
+      await this.#updateMetadataTimestamp(sessionId);
+    }
     await this.#sendEventMessages(sessionId, eventArr);
   }
 
@@ -51,6 +55,33 @@ export class DataService {
       let message = { sessionId, event: eventStr };
       await this.#rabbit.sendMessageToQueue(message);
     }
+  }
+
+  async #getSessionMetadata(sessionId) {
+    let pgMetadata = await this.#pg.getSessionMetadata(sessionId);
+    let chMetadata = await this.#clickhouse.getSessionMetadata(sessionId);
+    let isInPg = pgMetadata ? true : false;
+    let isInCh = chMetadata.length !== 0 ? true : false;
+    return { isInPg, isInCh, ...pgMetadata };
+  }
+
+  #isNewSession(metadata) {
+    return metadata.isInPg === false && metadata.isInCh === false;
+  }
+
+  #isEndedSession(metadata) {
+    return metadata.isInCh === true;
+  }
+
+  async #updateMetadataTimestamp(sessionId) {
+    let lastEventTimestamp = Date.now();
+    await this.#pg.updateMetadataTimestamp(sessionId, lastEventTimestamp);
+  }
+
+  async #createNewSession(sessionId, event) {
+    let startTime = event.timestamp;
+    let lastEventTimestamp = Date.now();
+    await this.#pg.createNewSession(sessionId, startTime, lastEventTimestamp);
   }
 
   async startSession(sessionId, timestamp) {

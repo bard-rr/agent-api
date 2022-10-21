@@ -111,8 +111,8 @@ export class Clickhouse {
     await this.client.exec({ query });
   }
 
-  async getOneSession(sessionId) {
-    let query = `select * from eventDb.sessionTable where sessionId='${sessionId}'`;
+  async getSessionMetadata(sessionId) {
+    let query = `SELECT * FROM eventDb.sessionTable WHERE sessionId='${sessionId}'`;
     let resultSet = await this.client.query({
       query,
       format: "JSONEachRow",
@@ -131,4 +131,5 @@ export class Clickhouse {
     let finalDate = `${year.toString()}-${month.toString()}-${day.toString()}`;
     return finalDate;
   }
+  //TODO: lock the code that executes SQL behind private functions.
 }
