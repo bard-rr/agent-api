@@ -1,28 +1,10 @@
 import express from "express";
-import { RabbitQ } from "./rabbitQueue.js";
-import { Clickhouse } from "./clickhouse.js";
+import { DataService } from "./dataService/index.js";
 
 const router = express.Router();
 
-let clickhouse;
-let rabbitQ;
-const setupAllConnections = async () => {
-  try {
-    rabbitQ = new RabbitQ();
-    await rabbitQ.init();
-    console.log("connected to queue");
-  } catch (e) {
-    console.log("queue error:", e);
-  }
-  try {
-    clickhouse = new Clickhouse();
-    await clickhouse.init();
-    console.log("connected to clickhouse!");
-  } catch (e) {
-    console.log("clickhouse error:", e);
-  }
-};
-setupAllConnections();
+let dataService = new DataService();
+await dataService.init();
 
 //let us know that a session has begun
 router.post("/start-session", async (req, res) => {
@@ -31,7 +13,7 @@ router.post("/start-session", async (req, res) => {
     res.status(400).send();
   }
   try {
-    await clickhouse.startNewSession(sessionId, timestamp);
+    await dataService.startNewSession(sessionId, timestamp);
     res.status(200).send();
   } catch (e) {
     console.error(e);
@@ -46,7 +28,7 @@ router.post("/end-session", async (req, res) => {
     res.status(400).send();
   }
   try {
-    await clickhouse.endSession(sessionId, timestamp);
+    await dataService.endSession(sessionId, timestamp);
     res.status(200).send();
   } catch (e) {
     console.error(e);
@@ -58,10 +40,7 @@ router.post("/end-session", async (req, res) => {
 router.post("/record", async (req, res) => {
   let { sessionId, events } = req.body;
   for (let i = 0; i < events.length; i++) {
-    //clickhouse expects a string for the event: not a json object.
-    let eventStr = JSON.stringify(events[i]);
-    let message = { sessionId, event: eventStr };
-    await rabbitQ.sendMessageToQueue(message);
+    await dataService.sendEventMessage(sessionId, events[i]);
   }
   res.status(200).send();
 });
