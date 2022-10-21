@@ -41,6 +41,10 @@ Helpful commands in the `clickhouse-client`
 - Show all tables in a database: `SELECT database, name FROM system.tables WHERE database=<'db name'>`
 - Show all views in a database `SELECT database, name FROM system.tables WHERE engine='View'`
 
+## Postgres setup
+
+Start postgres with `sudo service postgresql start`
+
 #### RabbitMQ Resources
 
 - [RabbitMQ in 100 seconds](https://www.youtube.com/watch?v=NQ3fZtyXji0&ab_channel=Fireship)
