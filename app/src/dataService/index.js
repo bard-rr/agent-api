@@ -44,7 +44,10 @@ export class DataService {
       return;
     } else {
       //update last received timestamp for session metadata
-      await this.#updateMetadataTimestamp(sessionId);
+      await this.#updateMostRecentEventTime(
+        sessionId,
+        eventArr[eventArr.length - 1]
+      );
     }
     await this.#sendEventMessages(sessionId, eventArr);
   }
@@ -73,15 +76,15 @@ export class DataService {
     return metadata.isInCh === true;
   }
 
-  async #updateMetadataTimestamp(sessionId) {
-    let lastEventTimestamp = Date.now();
-    await this.#pg.updateMetadataTimestamp(sessionId, lastEventTimestamp);
+  async #updateMostRecentEventTime(sessionId, event) {
+    let mostRecentEventTime = event.timestamp;
+    await this.#pg.updateMostRecentEventTime(sessionId, mostRecentEventTime);
   }
 
   async #createNewSession(sessionId, event) {
     let startTime = event.timestamp;
-    let lastEventTimestamp = Date.now();
-    await this.#pg.createNewSession(sessionId, startTime, lastEventTimestamp);
+    let mostRecentEventTime = Date.now();
+    await this.#pg.createNewSession(sessionId, startTime, mostRecentEventTime);
   }
 
   async startSession(sessionId, timestamp) {

@@ -21,23 +21,23 @@ export class Postgres {
   }
 
   async getSessionMetadata(sessionId) {
-    let sql = `SELECT * FROM session_metadata WHERE session_id='${sessionId}'`;
+    let sql = `SELECT * FROM pending_sessions WHERE session_id='${sessionId}'`;
     let result = await this.#executeQuery(sql);
     return result.rows[0];
   }
 
-  async createNewSession(sessionId, startTime, lastEventTimestamp) {
-    let sql = `INSERT INTO session_metadata 
-                (session_id, start_time, last_event_timestamp) 
+  async createNewSession(sessionId, startTime, mostRecentEventTime) {
+    let sql = `INSERT INTO pending_sessions 
+                (session_id, start_time, most_recent_event_time) 
                 VALUES 
-                ('${sessionId}', ${startTime}, ${lastEventTimestamp})
+                ('${sessionId}', ${startTime}, ${mostRecentEventTime})
               `;
     await this.#executeQuery(sql);
   }
 
-  async updateMetadataTimestamp(sessionId, lastEventTimestamp) {
-    let sql = `UPDATE session_metadata 
-               SET last_event_timestamp = ${lastEventTimestamp}
+  async updateMostRecentEventTime(sessionId, mostRecentEventTime) {
+    let sql = `UPDATE pending_sessions 
+               SET most_recent_event_time = ${mostRecentEventTime}
                WHERE session_id='${sessionId}'
               `;
     await this.#executeQuery(sql);
