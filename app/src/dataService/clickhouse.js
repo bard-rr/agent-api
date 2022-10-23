@@ -58,6 +58,7 @@ export class Clickhouse {
           endTime UInt64, 
           lengthMs UInt64,
           date Date,
+          originHost String,
           complete Bool
         )
         ENGINE = MergeTree()

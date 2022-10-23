@@ -34,11 +34,11 @@ export class DataService {
     }
   }
 
-  async handleEvents(sessionId, eventArr) {
+  async handleEvents(sessionId, eventArr, originHost) {
     let metadata = await this.#getSessionMetadata(sessionId);
     if (this.#isNewSession(metadata)) {
       //create new session
-      await this.#createNewSession(sessionId, eventArr[0]);
+      await this.#createNewSession(sessionId, eventArr[0], originHost);
     } else if (this.#isEndedSession(metadata)) {
       //ignore subsequent messages for ended sessions
       return;
@@ -81,10 +81,15 @@ export class DataService {
     await this.#pg.updateMostRecentEventTime(sessionId, mostRecentEventTime);
   }
 
-  async #createNewSession(sessionId, event) {
+  async #createNewSession(sessionId, event, originHost) {
     let startTime = event.timestamp;
     let mostRecentEventTime = Date.now();
-    await this.#pg.createNewSession(sessionId, startTime, mostRecentEventTime);
+    await this.#pg.createNewSession(
+      sessionId,
+      startTime,
+      mostRecentEventTime,
+      originHost
+    );
   }
 
   async startSession(sessionId, timestamp) {

@@ -26,11 +26,16 @@ export class Postgres {
     return result.rows[0];
   }
 
-  async createNewSession(sessionId, startTime, mostRecentEventTime) {
+  async createNewSession(
+    sessionId,
+    startTime,
+    mostRecentEventTime,
+    originHost
+  ) {
     let sql = `INSERT INTO pending_sessions 
-                (session_id, start_time, most_recent_event_time) 
+                (session_id, start_time, most_recent_event_time, origin_host) 
                 VALUES 
-                ('${sessionId}', ${startTime}, ${mostRecentEventTime})
+                ('${sessionId}', ${startTime}, ${mostRecentEventTime}, '${originHost}')
               `;
     await this.#executeQuery(sql);
   }
