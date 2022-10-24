@@ -53,7 +53,7 @@ export class DataService {
   }
 
   async #sendEventMessages(sessionId, eventArr) {
-    for (let i = 0; eventArr.length; i++) {
+    for (let i = 0; i < eventArr.length; i++) {
       let eventStr = JSON.stringify(eventArr[i]);
       let message = { sessionId, event: eventStr };
       await this.#rabbit.sendMessageToQueue(message);
