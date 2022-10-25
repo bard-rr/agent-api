@@ -86,42 +86,6 @@ export class Clickhouse {
     });
   }
 
-  async startNewSession(sessionId, timestamp) {
-    let sessionArr = await this.getOneSession(sessionId);
-    if (sessionArr.length !== 0) {
-      throw new Error("Attempted to start a session that already exists");
-    }
-    let date = this.buildDate(timestamp);
-    let query = `
-      INSERT INTO eventDb.sessionTable 
-      (sessionId, startTime, date, complete)
-      VALUES 
-      ('${sessionId}', ${timestamp}, '${date}', ${false})
-    `;
-    await this.client.exec({ query });
-  }
-
-  // TODO: clickhouse REALLY doesn't like it when you update the data inside it...
-  // may need to rethink how we store this kind of queryable session info...
-  async endSession(sessionId, endTimestamp) {
-    let sessionArr = await this.getOneSession(sessionId);
-    if (sessionArr.length === 0) {
-      throw new Error("attempted to end a session that doesn't exist");
-    }
-
-    let startTimestamp = sessionArr[0].startTime;
-    let lengthMs = endTimestamp - startTimestamp;
-
-    let query = `
-      ALTER TABLE eventDb.sessionTable
-      UPDATE endTime=${endTimestamp},
-      complete=${true},
-      lengthMs=${lengthMs}
-      WHERE sessionId='${sessionId}'
-    `;
-    await this.client.exec({ query });
-  }
-
   async getSessionMetadata(sessionId) {
     let query = `SELECT * FROM eventDb.sessionTable WHERE sessionId='${sessionId}'`;
     let resultSet = await this.client.query({
