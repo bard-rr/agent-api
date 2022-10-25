@@ -15,6 +15,16 @@ export class Clickhouse {
     await this.client.exec({
       query: `CREATE DATABASE IF NOT EXISTS eventDb;`,
     });
+
+    await this.client.exec({
+      query: `
+        CREATE TABLE IF NOT EXISTS eventDb.conversionEvents
+        (sessionId String, eventType String, textContent Nullable(String), timestamp UInt64)
+        ENGINE = MergeTree()
+        PRIMARY KEY (sessionId, eventType)
+      `,
+    });
+
     //create a queryable table. note that Primary Keys don't need to be unique among rows
     await this.client.exec({
       query: `
@@ -131,6 +141,14 @@ export class Clickhouse {
     let year = dateObj.getUTCFullYear();
     let finalDate = `${year.toString()}-${month.toString()}-${day.toString()}`;
     return finalDate;
+  }
+
+  async saveClickEvent(sessionId, clickEvent) {
+    let query = `INSERT INTO eventDb.conversionEvents
+    (sessionId, eventType, textContent, timestamp)
+    VALUES 
+    ('${sessionId}', 'click', '${clickEvent.conversionData.textContent}', ${clickEvent.timestamp})`;
+    await this.client.exec({ query });
   }
   //TODO: lock the code that executes SQL behind private functions.
 }
