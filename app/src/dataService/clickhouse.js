@@ -23,7 +23,6 @@ export class Clickhouse {
             sessionId String,
             eventType String,
             textContent Nullable(String),
-            message Nullable(String),
             timestamp UInt64
           )
         ENGINE = MergeTree()
@@ -75,7 +74,7 @@ export class Clickhouse {
           lengthMs UInt64,
           date Date,
           originHost String,
-          complete Bool
+          errorCount UInt64
         )
         ENGINE = MergeTree()
         PRIMARY KEY (sessionId)
@@ -118,21 +117,6 @@ export class Clickhouse {
     (sessionId, eventType, textContent, timestamp)
     VALUES
     ('${sessionId}', 'click', '${clickEvent.conversionData.textContent}', ${clickEvent.timestamp})`;
-    await this.client.exec({ query });
-  }
-
-  async saveConsoleErrorEvent(sessionId, consoleErrorEvent) {
-    let query = `
-      INSERT INTO eventDb.conversionEvents
-        (sessionId, eventType, message, timestamp)
-      VALUES
-        (
-          '${sessionId}',
-          'console_error',
-          '${consoleErrorEvent.conversionData.message}',
-          ${consoleErrorEvent.timestamp}
-        )
-    `;
     await this.client.exec({ query });
   }
 

@@ -14,7 +14,7 @@ pg Client expects an env file with the following fields
 
 export class Postgres {
   #client;
-  constructor() {}
+  constructor() { }
   async init() {
     this.#client = new Client();
     await this.#client.connect();
@@ -32,17 +32,25 @@ export class Postgres {
     mostRecentEventTime,
     originHost
   ) {
-    let sql = `INSERT INTO pending_sessions 
-                (session_id, start_time, most_recent_event_time, origin_host) 
-                VALUES 
+    let sql = `INSERT INTO pending_sessions
+                (session_id, start_time, most_recent_event_time, origin_host)
+                VALUES
                 ('${sessionId}', ${startTime}, ${mostRecentEventTime}, '${originHost}')
               `;
     await this.#executeQuery(sql);
   }
 
   async updateMostRecentEventTime(sessionId, mostRecentEventTime) {
-    let sql = `UPDATE pending_sessions 
+    let sql = `UPDATE pending_sessions
                SET most_recent_event_time = ${mostRecentEventTime}
+               WHERE session_id='${sessionId}'
+              `;
+    await this.#executeQuery(sql);
+  }
+
+  async incrementErrorCount(sessionId, numberOfNewErrors) {
+    let sql = `UPDATE pending_sessions
+               SET error_count = error_count + ${numberOfNewErrors}
                WHERE session_id='${sessionId}'
               `;
     await this.#executeQuery(sql);
