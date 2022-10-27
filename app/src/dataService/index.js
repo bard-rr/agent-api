@@ -54,10 +54,29 @@ export class DataService {
 
   async #sendEventMessages(sessionId, eventArr) {
     for (let i = 0; i < eventArr.length; i++) {
-      let eventStr = JSON.stringify(eventArr[i]);
+      let event = eventArr[i];
+      if (event.conversionData) {
+        await this.#handleConversionData(sessionId, event);
+      }
+      let eventStr = JSON.stringify(event);
       let message = { sessionId, event: eventStr };
       await this.#rabbit.sendMessageToQueue(message);
     }
+  }
+
+  async #handleConversionData(sessionId, event) {
+    switch (event.conversionData.eventType) {
+      case "click":
+        await this.#handleClickEvent(sessionId, event);
+        break;
+
+      default:
+        return;
+    }
+  }
+
+  async #handleClickEvent(sessionId, clickEvent) {
+    await this.#clickhouse.saveClickEvent(sessionId, clickEvent);
   }
 
   async #getSessionMetadata(sessionId) {

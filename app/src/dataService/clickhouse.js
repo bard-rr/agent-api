@@ -15,6 +15,16 @@ export class Clickhouse {
     await this.client.exec({
       query: `CREATE DATABASE IF NOT EXISTS eventDb;`,
     });
+
+    await this.client.exec({
+      query: `
+        CREATE TABLE IF NOT EXISTS eventDb.conversionEvents
+        (sessionId String, eventType String, textContent Nullable(String), timestamp UInt64)
+        ENGINE = MergeTree()
+        PRIMARY KEY (sessionId, eventType)
+      `,
+    });
+
     //create a queryable table. note that Primary Keys don't need to be unique among rows
     await this.client.exec({
       query: `
@@ -76,42 +86,6 @@ export class Clickhouse {
     });
   }
 
-  async startNewSession(sessionId, timestamp) {
-    let sessionArr = await this.getOneSession(sessionId);
-    if (sessionArr.length !== 0) {
-      throw new Error("Attempted to start a session that already exists");
-    }
-    let date = this.buildDate(timestamp);
-    let query = `
-      INSERT INTO eventDb.sessionTable 
-      (sessionId, startTime, date, complete)
-      VALUES 
-      ('${sessionId}', ${timestamp}, '${date}', ${false})
-    `;
-    await this.client.exec({ query });
-  }
-
-  // TODO: clickhouse REALLY doesn't like it when you update the data inside it...
-  // may need to rethink how we store this kind of queryable session info...
-  async endSession(sessionId, endTimestamp) {
-    let sessionArr = await this.getOneSession(sessionId);
-    if (sessionArr.length === 0) {
-      throw new Error("attempted to end a session that doesn't exist");
-    }
-
-    let startTimestamp = sessionArr[0].startTime;
-    let lengthMs = endTimestamp - startTimestamp;
-
-    let query = `
-      ALTER TABLE eventDb.sessionTable
-      UPDATE endTime=${endTimestamp},
-      complete=${true},
-      lengthMs=${lengthMs}
-      WHERE sessionId='${sessionId}'
-    `;
-    await this.client.exec({ query });
-  }
-
   async getSessionMetadata(sessionId) {
     let query = `SELECT * FROM eventDb.sessionTable WHERE sessionId='${sessionId}'`;
     let resultSet = await this.client.query({
@@ -131,6 +105,14 @@ export class Clickhouse {
     let year = dateObj.getUTCFullYear();
     let finalDate = `${year.toString()}-${month.toString()}-${day.toString()}`;
     return finalDate;
+  }
+
+  async saveClickEvent(sessionId, clickEvent) {
+    let query = `INSERT INTO eventDb.conversionEvents
+    (sessionId, eventType, textContent, timestamp)
+    VALUES 
+    ('${sessionId}', 'click', '${clickEvent.conversionData.textContent}', ${clickEvent.timestamp})`;
+    await this.client.exec({ query });
   }
   //TODO: lock the code that executes SQL behind private functions.
 }
