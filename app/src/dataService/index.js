@@ -6,7 +6,7 @@ export class DataService {
   #rabbit;
   #clickhouse;
   #pg;
-  constructor() {}
+  constructor() { }
   async init() {
     try {
       let rabbitQ = new RabbitQ();
@@ -60,6 +60,8 @@ export class DataService {
       }
       let eventStr = JSON.stringify(event);
       let message = { sessionId, event: eventStr };
+      // todelete
+      console.log('sending:', message);
       await this.#rabbit.sendMessageToQueue(message);
     }
   }
@@ -69,7 +71,9 @@ export class DataService {
       case "click":
         await this.#handleClickEvent(sessionId, event);
         break;
-
+      case "console_error":
+        await this.#handleConsoleErrorEvent(sessionId, event);
+        break;
       default:
         return;
     }
@@ -77,6 +81,10 @@ export class DataService {
 
   async #handleClickEvent(sessionId, clickEvent) {
     await this.#clickhouse.saveClickEvent(sessionId, clickEvent);
+  }
+
+  async #handleConsoleErrorEvent(sessionId, consoleErrorEvent) {
+    await this.#clickhouse.saveConsoleErrorEvent(sessionId, consoleErrorEvent);
   }
 
   async #getSessionMetadata(sessionId) {
