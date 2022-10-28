@@ -16,5 +16,6 @@ CREATE TABLE IF NOT EXISTS funnels (
   name text NOT NULL,
   created_at_ms bigint NOT NULL,
   last_modified_at_ms bigint NOT NULL,
-  funnel JSONB NOT NULL
+  funnel JSONB NOT NULL,
+  is_deleted bool NOT NULL
 );
