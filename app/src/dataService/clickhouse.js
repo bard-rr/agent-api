@@ -19,7 +19,12 @@ export class Clickhouse {
     await this.client.exec({
       query: `
         CREATE TABLE IF NOT EXISTS eventDb.conversionEvents
-        (sessionId String, eventType String, textContent Nullable(String), timestamp UInt64)
+          (
+            sessionId String,
+            eventType String,
+            textContent Nullable(String),
+            timestamp UInt64
+          )
         ENGINE = MergeTree()
         PRIMARY KEY (sessionId, eventType)
       `,
@@ -63,13 +68,13 @@ export class Clickhouse {
       query: `
         CREATE TABLE IF NOT EXISTS eventDb.sessionTable
         (
-          sessionId String, 
-          startTime UInt64, 
-          endTime UInt64, 
+          sessionId String,
+          startTime UInt64,
+          endTime UInt64,
           lengthMs UInt64,
           date Date,
           originHost String,
-          complete Bool
+          errorCount UInt64
         )
         ENGINE = MergeTree()
         PRIMARY KEY (sessionId)
@@ -110,9 +115,10 @@ export class Clickhouse {
   async saveClickEvent(sessionId, clickEvent) {
     let query = `INSERT INTO eventDb.conversionEvents
     (sessionId, eventType, textContent, timestamp)
-    VALUES 
+    VALUES
     ('${sessionId}', 'click', '${clickEvent.conversionData.textContent}', ${clickEvent.timestamp})`;
     await this.client.exec({ query });
   }
+
   //TODO: lock the code that executes SQL behind private functions.
 }
