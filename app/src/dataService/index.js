@@ -6,7 +6,7 @@ export class DataService {
   #rabbit;
   #clickhouse;
   #pg;
-  constructor() {}
+  constructor() { }
   async init() {
     try {
       let rabbitQ = new RabbitQ();
@@ -37,19 +37,37 @@ export class DataService {
   async handleEvents(sessionId, eventArr, originHost) {
     let metadata = await this.#getSessionMetadata(sessionId);
     if (this.#isNewSession(metadata)) {
-      //create new session
       await this.#createNewSession(sessionId, eventArr[0], originHost);
     } else if (this.#isEndedSession(metadata)) {
       //ignore subsequent messages for ended sessions
       return;
-    } else {
-      //update last received timestamp for session metadata
-      await this.#updateMostRecentEventTime(
-        sessionId,
-        eventArr[eventArr.length - 1]
-      );
     }
+
+    await this.#updateMostRecentEventTime(
+      sessionId,
+      eventArr[eventArr.length - 1]
+    );
+    await this.#updateErrorCount(sessionId, eventArr);
     await this.#sendEventMessages(sessionId, eventArr);
+  }
+
+  async #updateErrorCount(sessionId, eventArr) {
+    const numberOfNewErrors = this.#getNumberOfErrors(eventArr);
+    if (numberOfNewErrors > 0) {
+      await this.#incrementErrorCount(sessionId, numberOfNewErrors);
+    };
+  }
+
+  #getNumberOfErrors(eventArr) {
+    return eventArr.filter(this.#isError).length;
+  }
+
+  #isError(event) {
+    return event.type === 6 && event.data.payload.level === 'error';
+  }
+
+  async #incrementErrorCount(sessionId, numberOfNewErrors) {
+    await this.#pg.incrementErrorCount(sessionId, numberOfNewErrors);
   }
 
   async #sendEventMessages(sessionId, eventArr) {
@@ -69,7 +87,6 @@ export class DataService {
       case "click":
         await this.#handleClickEvent(sessionId, event);
         break;
-
       default:
         return;
     }
