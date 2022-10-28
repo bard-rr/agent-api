@@ -108,11 +108,13 @@ export class Clickhouse {
   }
 
   async saveClickEvent(sessionId, clickEvent) {
+    let textContent = clickEvent.conversionData.textContent;
+    let query_params = { sessionId, textContent };
     let query = `INSERT INTO eventDb.conversionEvents
     (sessionId, eventType, textContent, timestamp)
     VALUES 
-    ('${sessionId}', 'click', '${clickEvent.conversionData.textContent}', ${clickEvent.timestamp})`;
-    await this.client.exec({ query });
+    ({sessionId: String}, 'click', {textContent:String}, ${clickEvent.timestamp})`;
+    await this.client.exec({ query, query_params });
   }
   //TODO: lock the code that executes SQL behind private functions.
 }
