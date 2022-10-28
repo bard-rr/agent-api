@@ -40,6 +40,7 @@ Helpful commands in the `clickhouse-client`
 - Show all databases: `SELECT name FROM system.databases`
 - Show all tables in a database: `SELECT database, name FROM system.tables WHERE database=<'db name'>`
 - Show all views in a database `SELECT database, name FROM system.tables WHERE engine='View'`
+- Show the last 5 queries executed in clickhouse: `SELECT query FROM system.query_log ORDER BY event_time_microseconds DESC LIMIT 5`
 
 ## Postgres setup
 
