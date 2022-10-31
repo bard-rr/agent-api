@@ -87,6 +87,9 @@ export class DataService {
       case "click":
         await this.#handleClickEvent(sessionId, event);
         break;
+      case "custom":
+        await this.#handleCustomEvent(sessionId, event);
+        break;
       default:
         return;
     }
@@ -94,6 +97,10 @@ export class DataService {
 
   async #handleClickEvent(sessionId, clickEvent) {
     await this.#clickhouse.saveClickEvent(sessionId, clickEvent);
+  }
+
+  async #handleCustomEvent(sessionId, customEvent) {
+    await this.#clickhouse.saveCustomEvent(sessionId, customEvent);
   }
 
   async #getSessionMetadata(sessionId) {

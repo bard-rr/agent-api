@@ -22,6 +22,7 @@ export class Clickhouse {
             sessionId String,
             eventType String,
             textContent Nullable(String),
+            customEventType Nullable(String),
             timestamp UInt64
           )
         ENGINE = MergeTree()
@@ -121,6 +122,14 @@ export class Clickhouse {
     VALUES 
     ({sessionId: String}, 'click', {textContent:String}, ${clickEvent.timestamp})`;
     await this.#clientExec(query, query_params);
+  }
+
+  async saveCustomEvent(sessionId, customEvent) {
+    let query = `INSERT INTO eventDb.conversionEvents
+    (sessionId, eventType, customEventType, timestamp)
+    VALUES
+    ('${sessionId}', 'custom', '${customEvent.conversionData.customEventType}', ${customEvent.timestamp})`;
+    await this.client.exec({ query });
   }
 
   //TODO: lock the code that executes SQL behind private functions.
