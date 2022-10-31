@@ -33,8 +33,13 @@ router.post("/record", authenticateToken, async (req, res) => {
   if (req.user.name === "agent") {
     let originHost = req.get("Origin") ? req.get("Origin") : "INVALID ORIGIN";
     let { sessionId, events } = req.body;
-    await dataService.handleEvents(sessionId, events, originHost);
-    res.status(200).send();
+    try {
+      await dataService.handleEvents(sessionId, events, originHost);
+      res.status(200).send();
+    } catch (error) {
+      console.error("record error:", error);
+      res.status(500).json({ error });
+    }
   } else {
     res.statusSend(403);
   }

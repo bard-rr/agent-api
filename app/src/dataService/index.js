@@ -6,7 +6,7 @@ export class DataService {
   #rabbit;
   #clickhouse;
   #pg;
-  constructor() { }
+  constructor() {}
   async init() {
     try {
       let rabbitQ = new RabbitQ();
@@ -63,7 +63,7 @@ export class DataService {
   }
 
   #isError(event) {
-    return event.type === 6 && event.data.payload.level === 'error';
+    return event.type === 6 && event.data.payload.level === "error";
   }
 
   async #incrementErrorCount(sessionId, numberOfNewErrors) {
