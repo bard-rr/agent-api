@@ -119,7 +119,7 @@ export class Clickhouse {
     let query_params = { sessionId, textContent };
     let query = `INSERT INTO eventDb.conversionEvents
     (sessionId, eventType, textContent, timestamp)
-    VALUES 
+    VALUES
     ({sessionId: String}, 'click', {textContent:String}, ${clickEvent.timestamp})`;
     await this.#clientExec(query, query_params);
   }
@@ -129,7 +129,7 @@ export class Clickhouse {
     (sessionId, eventType, customEventType, timestamp)
     VALUES
     ('${sessionId}', 'custom', '${customEvent.conversionData.customEventType}', ${customEvent.timestamp})`;
-    await this.client.exec({ query });
+    await this.#client.exec({ query });
   }
 
   //TODO: lock the code that executes SQL behind private functions.
