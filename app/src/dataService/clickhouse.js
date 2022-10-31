@@ -23,6 +23,7 @@ export class Clickhouse {
             sessionId String,
             eventType String,
             textContent Nullable(String),
+            customEventType Nullable(String),
             timestamp UInt64
           )
         ENGINE = MergeTree()
@@ -117,6 +118,14 @@ export class Clickhouse {
     (sessionId, eventType, textContent, timestamp)
     VALUES
     ('${sessionId}', 'click', '${clickEvent.conversionData.textContent}', ${clickEvent.timestamp})`;
+    await this.client.exec({ query });
+  }
+
+  async saveCustomEvent(sessionId, customEvent) {
+    let query = `INSERT INTO eventDb.conversionEvents
+    (sessionId, eventType, customEventType, timestamp)
+    VALUES
+    ('${sessionId}', 'custom', '${customEvent.conversionData.customEventType}', ${customEvent.timestamp})`;
     await this.client.exec({ query });
   }
 
