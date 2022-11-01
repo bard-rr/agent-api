@@ -9,77 +9,11 @@ export class Clickhouse {
   async init() {
     //create a client to interface with clickhouse
     this.#client = createClient({
+      // eslint-disable-next-line no-undef
+      host: `http://${process.env.CLICKHOUSE_HOST}:8123`,
       username: "default",
       password: "",
     });
-    //creates a clickhouse db
-    await this.#clientExec(`CREATE DATABASE IF NOT EXISTS eventDb;`);
-
-    await this.#clientExec(
-      `
-        CREATE TABLE IF NOT EXISTS eventDb.conversionEvents
-          (
-            sessionId String,
-            eventType String,
-            textContent Nullable(String),
-            customEventType Nullable(String),
-            timestamp UInt64
-          )
-        ENGINE = MergeTree()
-        PRIMARY KEY (sessionId, eventType)
-      `
-    );
-
-    //create a queryable table. note that Primary Keys don't need to be unique among rows
-    await this.#clientExec(
-      `
-        CREATE TABLE IF NOT EXISTS eventDb.eventTable
-        (sessionId String, event String)
-        ENGINE = MergeTree()
-        PRIMARY KEY (sessionId)
-      `
-    );
-
-    //this creates a clickhouse table that listens for messages sent to the provided
-    //rabbitMQ exchange. We use a materialize view to take messages from this table
-    //and place them into our queryable table without 'reading' them from the queue.
-    await this.#clientExec(
-      `
-        CREATE TABLE IF NOT EXISTS eventDb.eventQueue
-        (sessionId String, event String)
-        ENGINE = RabbitMQ SETTINGS
-          rabbitmq_address = 'amqp://localhost:5672',
-          rabbitmq_exchange_name = 'test-exchange',
-          rabbitmq_format = 'JSONEachRow'
-      `
-    );
-
-    //create a materialized view to populate the queryable table
-    await this.#clientExec(
-      `
-        CREATE MATERIALIZED VIEW IF NOT EXISTS eventDb.consumer TO eventDb.eventTable
-        AS SELECT * FROM eventDb.eventQueue
-       `
-    );
-
-    //create a table to store session information. Might need to do
-    //some finagling with the date-related things on the way out
-    await this.#clientExec(
-      `
-        CREATE TABLE IF NOT EXISTS eventDb.sessionTable
-        (
-          sessionId String,
-          startTime UInt64,
-          endTime UInt64,
-          lengthMs UInt64,
-          date Date,
-          originHost String,
-          errorCount UInt64
-        )
-        ENGINE = MergeTree()
-        PRIMARY KEY (sessionId)
-      `
-    );
   }
 
   //data is an array of objects with a sessionId and event property.
