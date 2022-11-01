@@ -6,7 +6,7 @@ import router from "./router.js";
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
-app.use(json());
+app.use(json({ limit: "10mb" }));
 app.use("/", router);
 
 app.listen(PORT, async () => {
