@@ -8,7 +8,12 @@ import jwt from "jsonwebtoken";
 const { sign, verify } = jwt;
 
 let dataService = new DataService();
-await dataService.init();
+// todo
+console.log('about to call set timeout');
+setTimeout(async () => {
+  console.log('in the set timeout callback');
+  await dataService.init()
+}, 60 * 1000);
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
