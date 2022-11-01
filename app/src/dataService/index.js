@@ -6,7 +6,7 @@ export class DataService {
   #rabbit;
   #clickhouse;
   #pg;
-  constructor() {}
+  constructor() { }
   async init() {
     try {
       let rabbitQ = new RabbitQ();
@@ -34,10 +34,10 @@ export class DataService {
     }
   }
 
-  async handleEvents(sessionId, eventArr, originHost) {
+  async handleEvents(sessionId, eventArr, originHost, MAX_IDLE_TIME) {
     let metadata = await this.#getSessionMetadata(sessionId);
     if (this.#isNewSession(metadata)) {
-      await this.#createNewSession(sessionId, eventArr[0], originHost);
+      await this.#createNewSession(sessionId, eventArr[0], originHost, MAX_IDLE_TIME);
     } else if (this.#isEndedSession(metadata)) {
       //ignore subsequent messages for ended sessions
       return;
@@ -124,14 +124,15 @@ export class DataService {
     await this.#pg.updateMostRecentEventTime(sessionId, mostRecentEventTime);
   }
 
-  async #createNewSession(sessionId, event, originHost) {
+  async #createNewSession(sessionId, event, originHost, MAX_IDLE_TIME) {
     let startTime = event.timestamp;
     let mostRecentEventTime = Date.now();
     await this.#pg.createNewSession(
       sessionId,
       startTime,
       mostRecentEventTime,
-      originHost
+      originHost,
+      MAX_IDLE_TIME,
     );
   }
 
