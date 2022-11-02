@@ -34,10 +34,10 @@ export class DataService {
     }
   }
 
-  async handleEvents(sessionId, eventArr, originHost) {
+  async handleEvents(sessionId, eventArr, appName) {
     let metadata = await this.#getSessionMetadata(sessionId);
     if (this.#isNewSession(metadata)) {
-      await this.#createNewSession(sessionId, eventArr[0], originHost);
+      await this.#createNewSession(sessionId, eventArr[0], appName);
     } else if (this.#isEndedSession(metadata)) {
       //ignore subsequent messages for ended sessions
       return;
@@ -124,14 +124,14 @@ export class DataService {
     await this.#pg.updateMostRecentEventTime(sessionId, mostRecentEventTime);
   }
 
-  async #createNewSession(sessionId, event, originHost) {
+  async #createNewSession(sessionId, event, appName) {
     let startTime = event.timestamp;
     let mostRecentEventTime = Date.now();
     await this.#pg.createNewSession(
       sessionId,
       startTime,
       mostRecentEventTime,
-      originHost
+      appName
     );
   }
 

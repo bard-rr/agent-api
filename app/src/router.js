@@ -8,12 +8,7 @@ import jwt from "jsonwebtoken";
 const { sign, verify } = jwt;
 
 let dataService = new DataService();
-// todo
-console.log('about to call set timeout');
-setTimeout(async () => {
-  console.log('in the set timeout callback');
-  await dataService.init()
-}, 60 * 1000);
+await dataService.init();
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -36,10 +31,13 @@ router.get("/authenticate", (req, res) => {
 //take session data from the body and feed it to the data pipeline
 router.post("/record", authenticateToken, async (req, res) => {
   if (req.user.name === "agent") {
-    let originHost = req.get("Origin") ? req.get("Origin") : "INVALID ORIGIN";
+    let appName = req.headers.appname
+      ? req.headers.appname
+      : "INVALID APP NAME";
+    console.log(appName);
     let { sessionId, events } = req.body;
     try {
-      await dataService.handleEvents(sessionId, events, originHost);
+      await dataService.handleEvents(sessionId, events, appName);
       res.status(200).send();
     } catch (error) {
       console.error("record error:", error);

@@ -26,14 +26,9 @@ export class Postgres {
     return result.rows[0];
   }
 
-  async createNewSession(
-    sessionId,
-    startTime,
-    mostRecentEventTime,
-    originHost
-  ) {
+  async createNewSession(sessionId, startTime, mostRecentEventTime, appName) {
     let sql = `INSERT INTO pending_sessions
-                (session_id, start_time, most_recent_event_time, origin_host)
+                (session_id, start_time, most_recent_event_time, app_name)
                 VALUES
                 ($1, $2, $3, $4)
               `;
@@ -41,7 +36,7 @@ export class Postgres {
       sessionId,
       startTime,
       mostRecentEventTime,
-      originHost,
+      appName,
     ]);
   }
 

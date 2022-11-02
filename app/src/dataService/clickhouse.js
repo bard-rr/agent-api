@@ -9,7 +9,7 @@ export class Clickhouse {
   async init() {
     //create a client to interface with clickhouse
     this.#client = createClient({
-      host: `http://${process.env.CLICKHOUSE_HOST}:8123`,
+      host: `http://${process.env.CLICKHOUSE_HOST || "localhost"}:8123`,
       username: "default",
       password: "",
     });
@@ -49,7 +49,9 @@ export class Clickhouse {
         CREATE TABLE IF NOT EXISTS eventDb.eventQueue
         (sessionId String, event String)
         ENGINE = RabbitMQ SETTINGS
-          rabbitmq_address = 'amqp://${process.env.RABBITMQ_HOST}:5672',
+          rabbitmq_address = 'amqp://${
+            process.env.RABBITMQ_HOST || "localhost"
+          }:5672',
           rabbitmq_exchange_name = 'test-exchange',
           rabbitmq_format = 'JSONEachRow'
       `
@@ -74,7 +76,7 @@ export class Clickhouse {
           endTime UInt64,
           lengthMs UInt64,
           date Date,
-          originHost String,
+          appName String,
           errorCount UInt64
         )
         ENGINE = MergeTree()

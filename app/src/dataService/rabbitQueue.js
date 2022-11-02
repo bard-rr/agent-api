@@ -7,7 +7,9 @@ export class RabbitQ {
   }
 
   async init() {
-    let connection = await amqp.connect(`amqp://${process.env.RABBITMQ_HOST}:5672`);
+    let connection = await amqp.connect(
+      `amqp://${process.env.RABBITMQ_HOST || "localhost"}:5672`
+    );
     let channel = await connection.createChannel();
     await channel.assertExchange("test-exchange", "fanout", {
       durable: true,
