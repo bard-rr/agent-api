@@ -30,11 +30,11 @@ export class Postgres {
     sessionId,
     startTime,
     mostRecentEventTime,
-    originHost,
+    appName,
     MAX_IDLE_TIME
   ) {
     let sql = `INSERT INTO pending_sessions
-                (session_id, start_time, most_recent_event_time, origin_host, max_idle_time)
+                (session_id, start_time, most_recent_event_time, app_name, max_idle_time)
                 VALUES
                 ($1, $2, $3, $4, $5)
               `;
@@ -42,7 +42,7 @@ export class Postgres {
       sessionId,
       startTime,
       mostRecentEventTime,
-      originHost,
+      appName,
       MAX_IDLE_TIME
     ]);
   }

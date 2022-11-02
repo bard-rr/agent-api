@@ -33,10 +33,12 @@ router.get("/authenticate", (req, res) => {
 //take session data from the body and feed it to the data pipeline
 router.post("/record", authenticateToken, async (req, res) => {
   if (req.user.name === "agent") {
-    let originHost = req.get("Origin") ? req.get("Origin") : "INVALID ORIGIN";
+    let appName = req.headers.appname
+      ? req.headers.appname
+      : "INVALID APP NAME";
     let { sessionId, events, MAX_IDLE_TIME } = req.body;
     try {
-      await dataService.handleEvents(sessionId, events, originHost, MAX_IDLE_TIME);
+      await dataService.handleEvents(sessionId, events, appName, MAX_IDLE_TIME);
       res.status(200).send();
     } catch (error) {
       console.error("record error:", error);
