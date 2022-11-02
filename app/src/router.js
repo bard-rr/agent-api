@@ -15,6 +15,7 @@ const authenticateToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
 
+  // eslint-disable-next-line no-undef
   verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
@@ -24,6 +25,7 @@ const authenticateToken = (req, res, next) => {
 
 router.get("/authenticate", (req, res) => {
   const user = { name: "agent" };
+  // eslint-disable-next-line no-undef
   const accessToken = sign(user, process.env.ACCESS_TOKEN_SECRET);
   res.json({ accessToken });
 });
@@ -34,10 +36,9 @@ router.post("/record", authenticateToken, async (req, res) => {
     let appName = req.headers.appname
       ? req.headers.appname
       : "INVALID APP NAME";
-    console.log(appName);
-    let { sessionId, events } = req.body;
+    let { sessionId, events, MAX_IDLE_TIME } = req.body;
     try {
-      await dataService.handleEvents(sessionId, events, appName);
+      await dataService.handleEvents(sessionId, events, appName, MAX_IDLE_TIME);
       res.status(200).send();
     } catch (error) {
       console.error("record error:", error);
