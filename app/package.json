@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node --experimental-json-modules src/index.js",
     "dev": "nodemon --experimental-json-modules src/index.js"
   },
   "keywords": [],

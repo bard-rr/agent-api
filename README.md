@@ -1,8 +1,23 @@
-# Recorder backend
+# Agent API
 
-This is the recorder backend for our skateboard app.
+This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens
+and collect all the events from the agent recorder.
 
-Its based on the clickhouse spike found in `nino_spikes/clickhouse_spike`
+## Required Software
+
+Rabbitmq: [Download Here](https://www.rabbitmq.com/download.html) Will be run on port 5672.
+
+Clickhouse: [Download Here](https://clickhouse.com/docs/en/install/) Will run on port 8123. The schema can be found here [Schema](https://github.com/bard-rr/deploy)
+
+Postgres: [Download Here](https://www.postgresql.org/download/) Will run on port 5432. The schema can be found here [Schema](https://github.com/bard-rr/deploy)
+
+Session_Ender: [Download Here](https://github.com/bard-rr/session_ender) A Cron job that is responsible for completing sessions and moving them into the clickhouse database.
+
+## Setup
+
+Clone the open source reposatory from [Here](https://github.com/bard-rr/agent-api). Run the application using:
+
+`npm run start`
 
 ## Queue setup & tips:
 
@@ -72,8 +87,3 @@ PGPORT
 - [Using clickhouse with Node](https://clickhouse.com/docs/en/integrations/language-clients/nodejs)
 - [Integrating clickhouse with rabbitMQ](https://clickhouse.com/docs/en/engines/table-engines/integrations/rabbitmq/)
 - [More on clickhouse + rabbitMQ integration](https://cloud.yandex.com/en/docs/managed-clickhouse/tutorials/fetch-data-from-rabbitmq#configure-mch-for-rmq)
-
-#### TODOS
-
-- Look a bit more into persistence with rabbitMQ. Some reading about it would be a nice start. Only proper test will be to set something up in a VPS-like environment and reboot the server though...
-- Take a closer look at what we can do with clickhouse tables. Watch the rest of that postHog video now that you kind of know what's happening in clickhouse.
