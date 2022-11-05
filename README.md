@@ -9,8 +9,9 @@
 
 This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens and collect all the events from the agent recorder.
 
-<img src="https://github.com/bard-rr/.github/blob/main/profile/agentAPI.jpg?raw=true" width="600">
-
+<p align="center">
+  <img src="https://github.com/bard-rr/.github/blob/main/profile/agentAPI.jpg?raw=true" width="600">
+</p>
 
 # Required Software
 
