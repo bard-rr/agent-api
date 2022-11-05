@@ -1,9 +1,13 @@
 <img src="https://github.com/bard-rr/.github/blob/main/profile/logo2.png?raw=true" width="300">
+<br/>
+
+[![Version](https://img.shields.io/npm/v/bardrr)](https://www.npmjs.com/package/bardrr)
+[![Downloads/week](https://img.shields.io/npm/dt/bardrr)](https://npmjs.org/package/bardrr)
+[![License](https://img.shields.io/npm/l/monsoon-load-testing.svg)](https://github.com/minhphanhvu/bardrr/blob/master/package.json)
 
 # Agent API
 
-This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens
-and collect all the events from the agent recorder.
+This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens and collect all the events from the agent recorder.
 
 ## Required Software
 
