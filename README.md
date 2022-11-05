@@ -27,7 +27,7 @@ Session_Ender: [Download Here](https://github.com/bard-rr/session_ender) A Cron 
 
 ## Setup
 
-Clone the open source reposatory from [Here](https://github.com/bard-rr/agent-api). Run the application using:
+Clone the open source reposatory from [here](https://github.com/bard-rr/agent-api). Run the application using:
 
 `npm run start`
 
