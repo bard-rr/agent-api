@@ -9,6 +9,9 @@
 
 This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens and collect all the events from the agent recorder.
 
+<img src="https://github.com/bard-rr/.github/blob/main/profile/agentAPI.jpg?raw=true" width="600">
+
+
 # Required Software
 
 Rabbitmq: [Download Here](https://www.rabbitmq.com/download.html) Will be run on port 5672.
