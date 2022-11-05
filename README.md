@@ -9,7 +9,7 @@
 
 This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens and collect all the events from the agent recorder.
 
-## Required Software
+# Required Software
 
 Rabbitmq: [Download Here](https://www.rabbitmq.com/download.html) Will be run on port 5672.
 
@@ -19,8 +19,12 @@ Postgres: [Download Here](https://www.postgresql.org/download/) Will run on port
 
 Session_Ender: [Download Here](https://github.com/bard-rr/session_ender) A Cron job that is responsible for completing sessions and moving them into the clickhouse database.
 
-## Setup
+# Setup
 
 Clone the open source reposatory from [Here](https://github.com/bard-rr/agent-api). Run the application using:
 
 `npm run start`
+
+# Website
+
+You can read more about our project [here](oursupercoolapp.com).
