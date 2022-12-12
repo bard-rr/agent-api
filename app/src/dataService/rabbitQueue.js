@@ -17,8 +17,6 @@ export class RabbitQ {
     this.channel = channel;
   }
   async sendMessageToQueue(messageObj) {
-    //TODO: this method doesn't actually return promises. need to handle
-    //it a different way: https://amqp-node.github.io/amqplib/channel_api.html#flowcontrol
     await this.channel.publish(
       "test-exchange", //exchange name
       "", // routing key: not needed for fanout exchanges

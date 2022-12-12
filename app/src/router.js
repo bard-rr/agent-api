@@ -37,6 +37,9 @@ router.post("/record", authenticateToken, async (req, res) => {
       ? req.headers.appname
       : "INVALID APP NAME";
     let { sessionId, events, MAX_IDLE_TIME } = req.body;
+    if (!MAX_IDLE_TIME) {
+      MAX_IDLE_TIME = 5000;
+    }
     try {
       await dataService.handleEvents(sessionId, events, appName, MAX_IDLE_TIME);
       res.status(200).send();

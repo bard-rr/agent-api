@@ -70,7 +70,6 @@ export class Clickhouse {
     await this.#clientExec(query, query_params);
   }
 
-  //TODO: lock the code that executes SQL behind private functions.
   async #clientExec(query, query_params) {
     await this.#client.exec({ query, query_params });
   }
