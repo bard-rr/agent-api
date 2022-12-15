@@ -32,9 +32,11 @@ Session_Ender: [Download Here](https://github.com/bard-rr/session_ender) A Cron 
 
 ## Setup
 
-Clone the open source reposatory from [here](https://github.com/bard-rr/agent-api). Run the application using:
+Clone the open source reposatory from [here](https://github.com/bard-rr/agent-api). Run the application from the `app` directory using:
 
 `npm run start`
+
+The agent api will run on port `3001`.
 
 ## Website
 
