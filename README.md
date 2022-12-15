@@ -13,7 +13,12 @@
 
 ## Description
 
-This is the api for the agent from the bardrr npm package. This nodejs api will validate the bardrr Agent using json web tokens. The agent API has three main jobs in our infrastructure. First, it collects the metadata for each session by using the session ID given by the agent to keep track of the time, length, app name, and errors of each session. Second, the agent API parses conversion events from regular events and inserts them into the conversion table in the clickhouse database. Third, it collects all the events from the agent and inserts them into the events table in the clickhouse database. 
+This is the api for the Agent from [the bardrr npm package](https://github.com/bard-rr/agent). The agent API has four jobs in our infrastructure.
+
+- First, it validates the bardrr Agent using json web tokens.
+- Second, it collects the metadata for each session by using the session ID given by the agent to keep track of the time, length, app name, and errors of each session.
+- Third, the agent API parses conversion events from regular events and inserts them into the conversion table in the clickhouse database.
+- Fourth, it collects all the events from the agent and inserts them into the events table in the clickhouse database.
 
 ## Required Software
 
@@ -33,4 +38,4 @@ Clone the open source reposatory from [here](https://github.com/bard-rr/agent-ap
 
 ## Website
 
-You can read more about our project [here](oursupercoolwebsite.com).
+You can read more about our project [here](https://bard-rr.com/).
